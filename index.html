@@ -282,5 +282,13 @@ var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isInter
 addEventListener('scroll',function(){if(scrollY<200)links.forEach(function(a){a.classList.remove('a')})},{passive:true});
 })();
 </script>
+<script>
+(function(){var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(location.hash)history.replaceState(null,'',location.pathname+location.search);
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){
+e.preventDefault();var id=a.getAttribute('href').slice(1),el=id&&id!=='topo'?document.getElementById(id):null;
+var y=el?el.getBoundingClientRect().top+scrollY:0;scrollTo({top:y,behavior:rm?'auto':'smooth'})})});
+})();
+</script>
 </body>
 </html>
